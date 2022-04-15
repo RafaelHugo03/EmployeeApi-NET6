@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EmployeeAPI.Data.Mappings
 {
-    public class DepartmentMappings : IEntityTypeConfiguration<Department>
+    public class DepartmentMapping : IEntityTypeConfiguration<Department>
     {
         public void Configure(EntityTypeBuilder<Department> builder)
         {
