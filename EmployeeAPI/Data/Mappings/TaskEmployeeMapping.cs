@@ -28,7 +28,21 @@ namespace EmployeeAPI.Data.Mappings
                 .HasColumnType("TEXT")
                 .HasMaxLength(2000);
 
-            builder.HasOne(X => X.Employee).WithMany(x => x.Tasks).HasConstraintName("Fk_Tasks_Employee");
+            builder.Property(x => x.LastUpdateDate)
+           .IsRequired()
+           .HasColumnName("LastUpdateDate")
+           .HasColumnType("SMALLDATETIME")
+           .HasDefaultValueSql("GETDATE()");
+
+            builder.Property(x => x.Done)
+                .IsRequired()
+                .HasColumnName("Done")
+                .HasColumnType("BIT")
+                .HasDefaultValue(false);
+
+            builder.HasOne(X => X.Employee)
+                .WithMany(x => x.Tasks)
+                .HasConstraintName("Fk_Tasks_Employee");
 
         }
     }
