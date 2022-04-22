@@ -87,11 +87,20 @@ namespace EmployeeAPI.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("Description");
 
+                    b.Property<bool>("Done")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BIT")
+                        .HasDefaultValue(false)
+                        .HasColumnName("Done");
+
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("LastUpdateDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("SMALLDATETIME")
+                        .HasColumnName("LastUpdateDate")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("Title")
                         .IsRequired()

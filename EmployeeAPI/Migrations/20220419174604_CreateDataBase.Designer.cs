@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220415182031_Initial")]
-    partial class Initial
+    [Migration("20220419174604_CreateDataBase")]
+    partial class CreateDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -89,11 +89,20 @@ namespace EmployeeAPI.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("Description");
 
+                    b.Property<bool>("Done")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BIT")
+                        .HasDefaultValue(false)
+                        .HasColumnName("Done");
+
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("LastUpdateDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("SMALLDATETIME")
+                        .HasColumnName("LastUpdateDate")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("Title")
                         .IsRequired()

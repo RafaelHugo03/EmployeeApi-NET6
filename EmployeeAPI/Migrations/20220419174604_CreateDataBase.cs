@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EmployeeAPI.Migrations
 {
-    public partial class Initial : Migration
+    public partial class CreateDataBase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,8 +50,9 @@ namespace EmployeeAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "NVARCHAR(80)", maxLength: 80, nullable: false),
+                    Done = table.Column<bool>(type: "BIT", nullable: false, defaultValue: false),
                     Description = table.Column<string>(type: "TEXT", maxLength: 2000, nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValueSql: "GETDATE()"),
                     EmployeeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
